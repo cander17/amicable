@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+   <html>
+       <head>
+           <title>Amicable Numbers</title>
+       </head>
+       <body>
+           <div class="input">
+           <form>
+              <label for="fnum">First number:</label><br>
+              <input type="text" id="fnum" name="fnum"><br>
+              <label for="snum">Second number:</label><br>
+              <input type="text" id="snum" name="snum">
+              <input type="submit" value="submit" onclick="return amicableNums();" />
+            </form>
+            </div>
+            <script>
+                function isAFactor(x,y) {
+                    if (y % x == 0) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                function findAllFactors(x) {
+                    var factors = new Array();
+                    for (i = 1; i < x; i++) {
+                        if (isAFactor(i, x)) {
+                            factors.push(i);
+                        }
+                    }
+                    return factors;
+                }
+
+                function sumOfArray(arr) {
+                    var sum = arr.reduce(function(a, b){
+                       return a + b;
+                    }, 0);
+                    return sum;
+                }
+
+                function amicableNums() {
+                    var firstnum = document.getElementById("fnum").value;
+                    var secnum = document.getElementById("snum").value;
+                    var amicable = false;
+
+                    firstFactors = findAllFactors(firstnum);
+                    secFactors = findAllFactors(secnum);
+
+                    if ((sumOfArray(firstFactors) == secnum) &&
+                                            (sumOfArray(secFactors) == firstnum)){
+                            amicable = true;
+                        }
+                    alert('Factors of ' + firstnum + ': ' + firstFactors.join(" ")
+                    + '\nFactors of ' + secnum + ': ' + secFactors.join(" "));
+
+                    if (amicable == true) {
+                        document.write('The numbers: ' + firstnum + ' and '
+                                        + secnum + ' are amicable');
+                    }
+                    else {
+                        document.write('The numbers: ' + firstnum + ' and '
+                                        + secnum + ' are not amicable');
+                    }
+                    return amicable;
+                }
+
+            </script>
+
+       </body>
+   </html>
